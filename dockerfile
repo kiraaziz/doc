@@ -1,6 +1,8 @@
-FROM php:7-apache
-
-RUN docker-php-ext-install pdo pdo_mysql
-
-WORKDIR  /var/www/html
-COPY app/ .
+FROM mysql:5.7
+ 
+ENV MYSQL_DATABASE=test
+ENV MYSQL_ROOT_PASSWORD=test
+ENV MYSQL_USER=test
+ENV MYSQL_PASSWORD=test
+### import sql table
+ADD articles.sql /docker-entrypoint-initdb.d
